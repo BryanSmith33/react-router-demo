@@ -1,68 +1,37 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React Router DOM
+For routing our React applications, we use `react-router-dom`. We will specifically be using `HashRouter`.
 
-## Available Scripts
+## HashRouter
+```jsx
+import React from 'react'
+import {HashRouter} from 'react-router-dom'
+```
 
-In the project directory, you can run:
+HashRouter uses the hash portion of a URL to keep track of your application. Go ahead and try opening your developer console and typing out `window.location` and you will see that you have a wide range of options available to you. One of them is `hash`. 
 
-### `npm start`
+We use `HashRouter` because it is simpler to set up with our servers and when we go to host our applications.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Switch
+`Switch` is a component that works just like a switch case statement in JavaScript. It will look at where our application is being routed to, find a matching `path` and display our desired component. We use `Route` inside of our `Switch`
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Route
+`Route` will need at minimum one prop but most of the time two: `path` and `comopnent`. `Route` works with the `Switch` component to determine which component to display. It looks at the path in the URL and compares that to the supplied `path` route. When it finds a match, it will display that component. Remember, all of your `path`s should start with something like `/placeToRoute` and when the `Switch` finds a `/`, it will match that and return. That is why we pass in the `exact` prop to our `Route` that has a path of only `/`.
 
-### `npm test`
+## Link
+We use `Link` to tell our application where to route to. This has nothing to do with the `Route` component. It purely initiates a change in the URL bar that will then set off our `Switch` to check which path we are routing to and find a `Route` with that path and display the specified component.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## router
+When we first started out, we put everything inside of our App.js file. This got pretty big and would be difficult to manage in a larger application. We moved everything out to a `router` file to keep things cleaner. A Router file is purely just something that will export our `Switch` component from `react-router-dom`
 
-### `npm run build`
+```jsx
+import React from 'react'
+import {Switch, Route} from 'react-router-dom'
+// here you would import your components to be used in the Route component
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+export default (
+  <Switch>
+    // all our routes go here
+    <Route path='' component='' />
+  </Switch>
+)
+```
